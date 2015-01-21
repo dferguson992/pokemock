@@ -2,8 +2,6 @@
 /// \brief Declaration of Pokemon Meta Data classes and structures.
 
 #define UINT unsigned int
-#define ULNG unsigned long
-#define UDBL unsigned double
 
 #pragma once
 #include <string>
@@ -44,7 +42,7 @@ enum EType
 enum ECategory
 {
 	PHYSICAL	= 0,
-	CATEGORY	= 1,
+	SPECIAL	= 1,
 	STATUS		= 10,
 };
 

@@ -14,8 +14,9 @@ int main()
 {
 	CTackle t;
 	CLeer l;
+	CMove* m = &t;
 	cout << l.GetId();
-	cout << t.GetId();
+	cout << m->GetId();
 	_getch();
     return 0;
 }

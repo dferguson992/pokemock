@@ -94,7 +94,7 @@ void CLevelingManager::SetThisLvlExp()
 void CLevelingManager::LvlUp()
 {
 	m_lvl++;
-	CLevelingManager::SetNextLvlExp();
+	SetNextLvlExp();
 }
 
 //Does not include variables p and s; see http://bulbapedia.bulbagarden.net/wiki/Experience#Experience_underflow_glitch for details.  Also, IsOriginalOwner doesn't take Internation trades into account.

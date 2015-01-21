@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GameMetaData.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\LevelingManager.cpp"
 				>
 			</File>
@@ -199,6 +203,10 @@
 			</File>
 			<File
 				RelativePath=".\Pokemock.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Pokemon.cpp"
 				>
 			</File>
 			<File
@@ -227,6 +235,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\GameMetaData.h"
+				>
+			</File>
 			<File
 				RelativePath=".\LevelingManager.h"
 				>

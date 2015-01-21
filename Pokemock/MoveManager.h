@@ -5,6 +5,7 @@
 
 #pragma once
 #include <string>
+#include <vector>
 #include "pokemetadata.h"
 
 using namespace std;
@@ -43,6 +44,7 @@ public:
 	CMove();
 };
 
+///////////////////////////////////////////////////////////////////////
 class CLeer : public CMove
 {
 private:
@@ -52,6 +54,7 @@ public:
 	void Cast(CPokemon* castor, CPokemon* target[]) const;
 };
 
+///////////////////////////////////////////////////////////////////////
 class CTackle : public CMove
 {
 private:
@@ -61,6 +64,7 @@ public:
 	void Cast(CPokemon* castor, CPokemon* target[]) const;
 };
 
+///////////////////////////////////////////////////////////////////////
 class CGrowl : public CMove
 {
 private:
@@ -70,6 +74,7 @@ public:
 	void Cast(CPokemon* castor, CPokemon* target[]) const;
 };
 
+///////////////////////////////////////////////////////////////////////
 class CScratch : public CMove
 {
 private:
@@ -79,22 +84,93 @@ public:
 	void Cast(CPokemon* castor, CPokemon* target[]) const;
 };
 
-class CMoveLearningMap
+///////////////////////////////////////////////////////////////////////
+class CHyperBeam : public CMove
 {
 private:
-	enum { MAX = 100 };
-	int m_map[MAX][MAX];
+protected:
+public:
+	CHyperBeam();
+	void Cast(CPokemon* castor, CPokemon* target[]) const;
+};
+///////////////////////////////////////////////////////////////////////
+class CBite : public CMove
+{
+private:
+protected:
+public:
+	CBite();
+	void Cast(CPokemon* castor, CPokemon* target[]) const;
+};
+///////////////////////////////////////////////////////////////////////
+class CSurf : public CMove
+{
+private:
+protected:
+public:
+	CSurf();
+	void Cast(CPokemon* castor, CPokemon* target[]) const;
+};
+///////////////////////////////////////////////////////////////////////
+class CMoveVector
+{
+private:
+	vector<CMove*> m_moves;
+protected:
+public:
+	CMoveVector();
+	CMove* operator[](int& moveid)
+	{
+		CMove* mptr;
+		for(int i = 0; i < m_moves.size(); i++)
+		{
+			if(m_moves[i]->GetId() == moveid)
+			{
+				mptr = m_moves[i];
+				break;
+			}
+		}
+		return mptr;
+	}
+};
+///////////////////////////////////////////////////////////////////////
+class CLearnableMoveItem
+{
+private:
+	CMove* m_move;
+	int m_lvl;
+	mutable bool m_offered;
+protected:
+public:
+	CLearnableMoveItem(CMove* move, const int lvllearned);
+	void OfferToLearn();
+	bool GetOfferStatus() const;
+	int GetMoveOfferLevel() const;
+	CMove* GetMove() const;
+};
+///////////////////////////////////////////////////////////////////////
+class CMoveLevelingMap
+{
+private:
+	vector<CLearnableMoveItem> m_map;
 	int m_nextlvl;
 protected:
 public:
-	CMoveLearningMap();
+	CMoveLevelingMap(vector<CLearnableMoveItem> map, int lvl);
+	void IncrementLevel();
+	vector<CLearnableMoveItem> GetAllLearnableMoves() const;
 };
+///////////////////////////////////////////////////////////////////////
 class CMoveManager
 {
 private:
-	CMove* m_moveset[4];
-	CMoveLearningMap m_movemapping;
+	vector<CMove*> m_moveset;
+	CMoveLevelingMap m_movemapping;
 protected:
 public:
-	CMoveManager();
+	CMoveManager(vector<CMove*> moveset, CMoveLevelingMap map);
+	void SwapMoves(CMove* target, CMove* replacement);
+	void LevelUp();
+	
 };
+///////////////////////////////////////////////////////////////////////
