@@ -42,7 +42,7 @@ enum EType
 enum ECategory
 {
 	PHYSICAL	= 0,
-	SPECIAL	= 1,
+	SPECIAL		= 1,
 	STATUS		= 10,
 };
 

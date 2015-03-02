@@ -240,6 +240,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\HashMap.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LevelingManager.h"
 				>
 			</File>
